@@ -13,7 +13,7 @@ import math
 
 data = []
 
-f = opem("datas.txt","r")
+f = open("datas.txt","r")
 for line in f:
     line = eval(line)
     data.append(line)
@@ -29,7 +29,7 @@ tl.pensize(2) # 画笔粗细
 # 三角函数中的值是n * 2 * pi * t , 其中n取0，1，-1，2，-2……，t的范围是[0,1]，当然t取大了没关系，会重复描已经画好的图形
 for t in range(10000):
     for i in range(len(data)):
-        if i % 2 == 1:
+        if i % 2 == 0:
             x[i] = data[i][0] * math.cos(i / 10000 * 3.14 * t) - data[i][1] * math.sin(i / 10000 * 3.14 * t)
             y[i] = data[i][0] * math.sin(i / 10000 * 3.14 * t) + data[i][1] * math.cos(i / 10000 * 3.14 * t)
 
@@ -37,5 +37,5 @@ for t in range(10000):
             x[i] = data[i][0] * math.cos(-(i+1) / 10000 * 3.14 * t) - data[i][1] * math.sin(-(i+1) / 10000 * 3.14 * t)
             y[i] = data[i][0] * math.sin(-(i+1) / 10000 * 3.14 * t) + data[i][1] * math.cos(-(i+1) / 10000 * 3.14 * t)
 
-    tl.goto(int(sum(x)),-int(sum(y))) # 正负可以控制图形的左右镜像，上下镜像
+    tl.goto(int(sum(x)),-int(sum(y))) # 正负可以控制图形的左右镜像，上下镜像,乘除可以控制缩放
     tl.pendown()
